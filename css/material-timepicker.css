@@ -1,0 +1,193 @@
+/* OPTIONAL */
+input[type="mat-timepicker"].MatTimepickerInput {
+  font-family: sans-serif;
+  color: #333;
+  cursor: pointer;
+  padding: 3px;
+  line-height: 15px;
+  font-size: 15px;
+  width: 40px;
+  border: 1px solid #ddd;
+  border-radius: 1px;
+  transition-property: border-color, background-color;
+  transition-duration: 0.15s;
+}
+
+input[type="mat-timepicker"].MatTimepickerInput:hover {
+  border-color: #999;
+  background-color: #fafafa;
+}
+
+/* customize clock color */
+.MatTimePicker-Clock .MatTimePicker-TimeHeader,
+.MatTimePicker-Clock .MatTimePicker-Selector,
+.MatTimePicker-Clock .MatTimePicker-WatchCenterDot
+{
+  background-color: rebeccapurple;
+}
+.MatTimePicker-Clock .MatTimePicker-Button {
+  color: rebeccapurple;
+}
+
+.MatTimePicker-Clock {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  z-index: 1;
+}
+
+.MatTimePicker-Popup {
+  width: calc(100% - 20px);
+  max-width: 300px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.MatTimePicker-TimeHeader {
+  background-color: #469cd1;
+  padding: 15px;
+  font-size: 30px;
+  font-weight: 100;
+  min-width: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.MatTimePicker-TimeHeader > span {
+  color: #fff;
+}
+
+.MatTimePicker-WatchContainer {
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.MatTimePicker-Watch {
+  width: 100%;
+  padding-bottom: 100%;
+  background-color: #e6e6e6;
+  margin: 0px;
+  border-radius: 100%;
+  position: relative;
+}
+
+.MatTimePicker-WatchHourContainer {
+  top: calc(50% - 15px);
+  left: 50%;
+  position: absolute;
+  width: calc(50% - 50px);
+  /* height: 100%; */
+  text-align: right;
+  vertical-align: middle;
+  transform-origin: left;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  align-items: center;
+}
+
+.MatTimePicker-WatchHourContainer:active .MatTimePicker-WatchHourBg,
+.MatTimePicker-WatchHourContainer:active .MatTimePicker-WatchStick,
+.MatTimePicker-WatchHourContainer:active .MatTimePicker-WatchCenterDot {
+  opacity: 1;
+}
+.MatTimePicker-WatchHourContainer:active .MatTimePicker-WatchHourValue {
+  color: #fff;
+}
+
+.MatTimePicker-WatchHour {
+  padding: 0px;
+  border-width: 0px;
+  position: relative;
+  /* margin-left: calc(50% - 0px); */
+  vertical-align: middle;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.MatTimePicker-WatchHourBg {
+  background-color: rebeccapurple;
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  border-radius: 40px;
+  opacity: 0;
+}
+
+.MatTimePicker-WatchHourValue {
+  color: #333;
+}
+
+.MatTimePicker-WatchHourPM {
+  width: calc(50% - 3px);
+}
+
+.MatTimePicker-WatchStick {
+  height: 2px;
+  flex-grow: 1;
+  background-color: rebeccapurple;
+  opacity: 0;
+  margin-left: -3px;
+}
+
+.MatTimePicker-WatchCenterDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+  background-color: rebeccapurple;
+  opacity: 0;
+}
+
+.MatTimePicker-Buttons {
+  /* padding: 10px 15px; */
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.MatTimePicker-Button {
+  background-color: #fff;
+  border: none;
+  font-size: 16px;
+  margin-left: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+
+  .MatTimePicker-WatchContainer {
+
+  }
+
+  .MatTimePicker-Popup {
+
+  }
+}
+
+@media only screen and (orientation:landscape) {
+  .MatTimePicker-Popup {
+    flex-direction: row;
+    max-width: 400px;
+  }
+}
