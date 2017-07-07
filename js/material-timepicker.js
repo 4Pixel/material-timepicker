@@ -1,12 +1,33 @@
 (function(  ) {
+  var timePickerId = 'mat-time-picker';
+  var timePickerHourId = 'mat-time-picker-hour';
+
   window.onload = function (  ) {
     init( );
+  }
+
+  var onSetHourClick = function( event ) {
+    var hour = event.currentTarget.getAttribute( 'hour' )
+    var timepicker = document.getElementById( timePickerId );
+    var hourEl = document.getElementById( timePickerHourId );
+    hourEl.innerHTML = ( parseInt( hour ) < 10 ? '0' : '' ) + hour;
+    hourEl.className = 'MatTimePicker-TimeHeader-Selected';
+    [].slice.call( timepicker.getElementsByClassName( 'MatTimePicker-WatchHourContainer' ) ).map( function ( element ) {
+      element.className = element.className.replace( ' MatTimePicker-HourSelected', '' );
+      if( element.getAttribute( 'hour' ) === hour ) {
+        element.className += ' MatTimePicker-HourSelected';
+      }
+    } );
+  }
+  
+  var onCancelClick = function ( ) {
+    document.getElementById( timePickerId ).style.display = 'none';
   }
 
   var init = function( ) {
     var elTimepicker = document.createElement( 'div' );
     elTimepicker.className = 'MatTimePicker-Clock';
-    elTimepicker.id = 'mat-time-picker';
+    elTimepicker.id = timePickerId;
     var elPopup = document.createElement( 'div' );
     elPopup.className = 'MatTimePicker-Popup';
     elTimepicker.appendChild( elPopup );
@@ -36,6 +57,7 @@
     var elButtonCancel = document.createElement( 'button' );
     elButtonCancel.className = 'MatTimePicker-Button';
     elButtonCancel.innerHTML = 'CANCEL';
+    elButtonCancel.addEventListener( 'click', onCancelClick );
     elButtons.appendChild( elButtonCancel );
     var elButtonOk = document.createElement( 'button' );
     elButtonOk.className = 'MatTimePicker-Button';
@@ -43,11 +65,14 @@
     elButtons.appendChild( elButtonOk );
 
     // var quadrant = null;
-    for( var hAM = 24; hAM > 0; hAM-- ) {
+    for( var h = 24; h > 0; h-- ) {
       var hourContainer = document.createElement( 'div' );
-      var rotation = ( -90 + ( 360/12 * hAM ) );
+      var rotation = ( -90 + ( 360/12 * h ) );
       hourContainer.style.transform = 'rotate(' + rotation + 'deg)';
-      hourContainer.className = 'MatTimePicker-WatchHourContainer' + ( hAM > 12 ? ' MatTimePicker-WatchHourPM' : '' );
+      hourContainer.className = 'MatTimePicker-WatchHourContainer' + ( h > 12 ? ' MatTimePicker-WatchHourPM' : '' );
+      hourContainer.setAttribute( 'hour', h % 24 );
+      hourContainer.addEventListener( 'click', onSetHourClick );
+
       elWatch.appendChild( hourContainer );
       var centerDot = document.createElement( 'div' );
       centerDot.className = 'MatTimePicker-WatchCenterDot';
@@ -64,7 +89,7 @@
       hour.appendChild( hourBg );
       var hourValue = document.createElement( 'div' );
       hourValue.className = 'MatTimePicker-WatchHourValue';
-      hourValue.innerHTML = hAM % 24;
+      hourValue.innerHTML = h % 24;
       hourValue.style.transform = 'rotate(' + ( rotation * -1 ) + 'deg)';
       hour.appendChild( hourValue );
     }
