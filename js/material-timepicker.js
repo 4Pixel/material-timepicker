@@ -12,6 +12,7 @@
 
   var onSetHourClick = function( event ) {
     setHour( event.currentTarget.getAttribute( 'hour' ), true );
+    switchTimepickerInput( false );
   }
 
   var setHour = function ( hour, isSelected ) {
@@ -22,7 +23,7 @@
     hourEl.className = isSelected ? 'MatTimePicker-TimeHeader-Selected' : '';
     [].slice.call( timepicker.getElementsByClassName( 'MatTimePicker-WatchHourContainer' ) ).map( function ( element ) {
       element.className = element.className.replace( ' MatTimePicker-HourSelected', '' );
-      if( element.getAttribute( 'hour' ) === hour ) {
+      if( parseInt( element.getAttribute( 'hour' ) ) === hour ) {
         element.className += ' MatTimePicker-HourSelected';
       }
     } );
@@ -40,7 +41,7 @@
     minuteEl.className = isSelected ? 'MatTimePicker-TimeHeader-Selected' : '';
     [].slice.call( timepicker.getElementsByClassName( 'MatTimePicker-WatchMinuteContainer' ) ).map( function ( element ) {
       element.className = element.className.replace( ' MatTimePicker-HourSelected', '' );
-      if( element.getAttribute( 'minute' ) === minute ) {
+      if( parseInt( element.getAttribute( 'minute' ) ) === minute ) {
         element.className += ' MatTimePicker-HourSelected';
       }
     } );
@@ -62,6 +63,7 @@
     var time = currentInput.getAttribute( 'value' ).split( ':' );
     setHour( time[ 0 ], time[ 0 ] !== '00' && time[ 1 ] !== '00' ); //TODO: think about initial state handling
     setMinute( time[ 1 ] );
+    switchTimepickerInput( true );
     document.getElementById( timePickerId ).style.display = 'flex';
   }
 
@@ -74,6 +76,7 @@
   }
 
   var switchTimepickerInput = function ( isHour ) {
+    document.getElementById( isHour ? timePickerHourId : timePickerMinuteId ).className = 'MatTimePicker-TimeHeader-Selected';
     document.getElementById( timePickerHourSelectId ).style.display = isHour ? 'flex' : 'none';
     document.getElementById( timePickerMinuteSelectId ).style.display = isHour ? 'none' : 'flex';
   }
@@ -113,11 +116,11 @@
     var elHourSelect = document.createElement( 'div' );
     elHourSelect.className = 'MatTimePicker-Watch';
     elHourSelect.id = timePickerHourSelectId;
-    elHourSelect.style.display = 'none';
     elWatchContainer.appendChild( elHourSelect );
     var elMinuteSelect = document.createElement( 'div' );
     elMinuteSelect.className = 'MatTimePicker-Watch';
     elMinuteSelect.id = timePickerMinuteSelectId;
+    elMinuteSelect.style.display = 'none';
     elWatchContainer.appendChild( elMinuteSelect );
 
     var elButtons = document.createElement( 'div' );
@@ -192,7 +195,7 @@
           minuteContainer.appendChild( stick );
 
           var minute = document.createElement( 'div' );
-          minute.className = 'MatTimePicker-WatchHour';
+          minute.className = 'MatTimePicker-WatchMinute';
           minuteContainer.appendChild( minute );
           var minuteBg = document.createElement( 'div' );
           minuteBg.className = 'MatTimePicker-WatchHourBg';
