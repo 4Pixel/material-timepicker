@@ -180,6 +180,34 @@ span.MatTimePicker-TimeHeader-Selected {
   margin-left: -2.5px;
 }
 
+.MatTimePicker-WatchMinuteContainer {
+  top: calc(50% - 10px);
+  left: 50%;
+  position: absolute;
+  width: calc(50% - 3px);
+  text-align: right;
+  vertical-align: middle;
+  transform-origin: left;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  align-items: center;
+  height: 15px;
+  /* overflow: hidden; */
+}
+
+.MatTimePicker-WatchMinuteContainer:hover .MatTimePicker-WatchHourBg,
+.MatTimePicker-WatchMinuteContainer:hover .MatTimePicker-WatchStick,
+.MatTimePicker-WatchMinuteContainer:hover .MatTimePicker-WatchCenterDot {
+  opacity: 0.5;
+}
+
+.MatTimePicker-WatchMinuteContainer.MatTimePicker-HourSelected .MatTimePicker-WatchHourBg,
+.MatTimePicker-WatchMinuteContainer.MatTimePicker-HourSelected .MatTimePicker-WatchStick,
+.MatTimePicker-WatchMinuteContainer.MatTimePicker-HourSelected .MatTimePicker-WatchCenterDot {
+  opacity: 1;
+}
+
 .MatTimePicker-Buttons {
   /* padding: 10px 15px; */
   display: flex;
