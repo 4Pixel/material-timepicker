@@ -1,17 +1,23 @@
 (function(  ) {
   var timePickerId = 'mat-time-picker';
   var timePickerHourId = 'mat-time-picker-hour';
+  var timePickerMinuteId = 'mat-time-picker-minute';
 
   window.onload = function (  ) {
     init( );
   }
 
   var onSetHourClick = function( event ) {
-    var hour = event.currentTarget.getAttribute( 'hour' )
+    setHour( event.currentTarget.getAttribute( 'hour' ), true );
+
+  }
+
+  var setHour = function ( hour, isSelected ) {
+    hour = parseInt( hour );
     var timepicker = document.getElementById( timePickerId );
     var hourEl = document.getElementById( timePickerHourId );
-    hourEl.innerHTML = ( parseInt( hour ) < 10 ? '0' : '' ) + hour;
-    hourEl.className = 'MatTimePicker-TimeHeader-Selected';
+    hourEl.innerHTML = ( hour < 10 ? '0' : '' ) + hour;
+    hourEl.className = isSelected ? 'MatTimePicker-TimeHeader-Selected' : '';
     [].slice.call( timepicker.getElementsByClassName( 'MatTimePicker-WatchHourContainer' ) ).map( function ( element ) {
       element.className = element.className.replace( ' MatTimePicker-HourSelected', '' );
       if( element.getAttribute( 'hour' ) === hour ) {
@@ -19,12 +25,30 @@
       }
     } );
   }
+
+  var setMinute = function ( minute, isSelected ) {
+    minute = parseInt( minute );
+    var minuteEl = document.getElementById( timePickerMinuteId );
+    minuteEl.innerHTML = (  minute < 10 ? '0' : '' ) + minute;
+    minuteEl.className = isSelected ? 'MatTimePicker-TimeHeader-Selected' : '';
+  }
   
-  var onCancelClick = function ( ) {
+  var onCancelClick = function ( event ) {
     document.getElementById( timePickerId ).style.display = 'none';
   }
 
+  var onShowTimepickerClick = function( event ) {
+    var time = event.currentTarget.getAttribute( 'value' ).split( ':' );
+    setHour( time[ 0 ], time[ 0 ] !== '00' && time[ 1 ] !== '00' ); //TODO: think about initial state handling
+    setMinute( time[ 1 ] );
+    document.getElementById( timePickerId ).style.display = 'flex';
+  }
+
   var init = function( ) {
+    [].slice.call( document.querySelectorAll('[type="mat-timepicker"]') ).map( function( input ) {
+      input.addEventListener( 'click', onShowTimepickerClick );
+    } );
+
     var elTimepicker = document.createElement( 'div' );
     elTimepicker.className = 'MatTimePicker-Clock';
     elTimepicker.id = timePickerId;
@@ -34,6 +58,7 @@
     var elHeader = document.createElement( 'div' );
     elHeader.className = 'MatTimePicker-TimeHeader';
     elPopup.appendChild( elHeader );
+
     var elHour = document.createElement( 'span' );
     elHour.id = 'mat-time-picker-hour';
     elHour.innerHTML = '00'
@@ -48,6 +73,7 @@
     var elWatchContainer = document.createElement( 'div' );
     elWatchContainer.className = 'MatTimePicker-WatchContainer';
     elPopup.appendChild( elWatchContainer );
+
     var elWatch = document.createElement( 'div' );
     elWatch.className = 'MatTimePicker-Watch';
     elWatchContainer.appendChild( elWatch );
@@ -64,7 +90,12 @@
     elButtonOk.innerHTML = 'OK';
     elButtons.appendChild( elButtonOk );
 
-    // var quadrant = null;
+    initWatchHours( elWatch );
+
+    document.body.insertBefore( elTimepicker, document.body.children[ 0 ] );
+  }
+
+  function initWatchHours( elWatch ) {
     for( var h = 24; h > 0; h-- ) {
       var hourContainer = document.createElement( 'div' );
       var rotation = ( -90 + ( 360/12 * h ) );
@@ -72,8 +103,8 @@
       hourContainer.className = 'MatTimePicker-WatchHourContainer' + ( h > 12 ? ' MatTimePicker-WatchHourPM' : '' );
       hourContainer.setAttribute( 'hour', h % 24 );
       hourContainer.addEventListener( 'click', onSetHourClick );
-
       elWatch.appendChild( hourContainer );
+
       var centerDot = document.createElement( 'div' );
       centerDot.className = 'MatTimePicker-WatchCenterDot';
       hourContainer.appendChild( centerDot );
@@ -93,10 +124,5 @@
       hourValue.style.transform = 'rotate(' + ( rotation * -1 ) + 'deg)';
       hour.appendChild( hourValue );
     }
-
-    document.body.insertBefore( elTimepicker, document.body.children[ 0 ] );
-
-    // var el = document.getElementById( 'mat-time-picker' );
-    // el.getElementsByClassName( 'MatTimePicker-Watch' );
   }
 } )( );
