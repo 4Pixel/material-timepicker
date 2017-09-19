@@ -39,6 +39,7 @@ input[type="mat-timepicker"].MatTimepickerInput:hover {
   top: 0px;
   left: 0px;
   display: none;
+  /*display: flex;*/
   justify-content: center;
   align-items: center;
   font-family: sans-serif, Arial, Helvetica;
@@ -61,7 +62,7 @@ input[type="mat-timepicker"].MatTimepickerInput:hover {
   background-color: #469cd1;
   padding: 15px;
   font-size: 33px;
-  font-weight: 100;
+  font-weight: 400;
   min-width: 110px;
   display: flex;
   align-items: center;
@@ -79,25 +80,23 @@ span.MatTimePicker-TimeHeader-Selected {
 }
 
 .MatTimePicker-WatchContainer {
-  margin-top: 20px;
-  margin-right: 20px;
-  margin-bottom: 10px;
-  margin-left: 20px;
-  /* position: relative; */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-between;
-  flex-grow: 1;
+  margin: 20px 20px 10px;
+  position: relative;
+  width: calc(100% - 40px);
 }
 
 .MatTimePicker-Watch {
   width: 100%;
   padding-bottom: 100%;
-  background-color: #e6e6e6;
-  margin: 0px;
-  border-radius: 100%;
   position: relative;
+}
+
+.MatTimePicker-WatchFace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #e6e6e6;
+  border-radius: 100%;
 }
 
 .MatTimePicker-WatchHourContainer {
@@ -105,7 +104,6 @@ span.MatTimePicker-TimeHeader-Selected {
   left: 50%;
   position: absolute;
   width: calc(50% - 35px);
-  /* height: 100%; */
   text-align: right;
   vertical-align: middle;
   transform-origin: left;
@@ -135,7 +133,6 @@ span.MatTimePicker-TimeHeader-Selected {
   padding: 0px;
   border-width: 0px;
   position: relative;
-  /* margin-left: calc(50% - 0px); */
   vertical-align: middle;
   height: 30px;
   width: 30px;
@@ -149,6 +146,8 @@ span.MatTimePicker-TimeHeader-Selected {
   width: inherit;
   height: inherit;
   position: absolute;
+  top: 0px;
+  left: 0px;
   border-radius: 15px;
   opacity: 0;
 }
@@ -159,7 +158,7 @@ span.MatTimePicker-TimeHeader-Selected {
 }
 
 .MatTimePicker-WatchHourPM {
-  width: calc(50% - 3px);
+  width: calc(50% - 5px);
 }
 
 .MatTimePicker-WatchHourPM .MatTimePicker-WatchHourValue {
@@ -184,10 +183,10 @@ span.MatTimePicker-TimeHeader-Selected {
 }
 
 .MatTimePicker-WatchMinuteContainer {
-  top: calc(50% - 10px);
+  top: calc(50% - 15px);
   left: 50%;
   position: absolute;
-  width: calc(50% - 3px);
+  width: calc(50% - 5px);
   text-align: right;
   vertical-align: middle;
   transform-origin: left;
@@ -195,8 +194,6 @@ span.MatTimePicker-TimeHeader-Selected {
   justify-content: space-between;
   cursor: pointer;
   align-items: center;
-  height: 15px;
-  /* overflow: hidden; */
 }
 
 .MatTimePicker-WatchMinuteContainer:hover .MatTimePicker-WatchHourBg,
@@ -225,10 +222,9 @@ span.MatTimePicker-TimeHeader-Selected {
 }
 
 .MatTimePicker-Buttons {
-  /* padding: 10px 15px; */
   display: flex;
   justify-content: flex-end;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .MatTimePicker-Button {
@@ -236,7 +232,7 @@ span.MatTimePicker-TimeHeader-Selected {
   border: none;
   font-size: 16px;
   margin-left: 20px;
-  padding: 10px;
+  padding: 10px 15px;
   cursor: pointer;
   border-radius: 1px;
   user-select: none;

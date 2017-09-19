@@ -113,15 +113,18 @@
     elWatchContainer.className = 'MatTimePicker-WatchContainer';
     elPopup.appendChild( elWatchContainer );
 
+    var elWatch = document.createElement( 'div' );
+    elWatch.className = 'MatTimePicker-Watch';
+    elWatchContainer.appendChild( elWatch );
     var elHourSelect = document.createElement( 'div' );
-    elHourSelect.className = 'MatTimePicker-Watch';
+    elHourSelect.className = 'MatTimePicker-WatchFace';
     elHourSelect.id = timePickerHourSelectId;
-    elWatchContainer.appendChild( elHourSelect );
+    elWatch.appendChild( elHourSelect );
     var elMinuteSelect = document.createElement( 'div' );
-    elMinuteSelect.className = 'MatTimePicker-Watch';
+    elMinuteSelect.className = 'MatTimePicker-WatchFace';
     elMinuteSelect.id = timePickerMinuteSelectId;
     elMinuteSelect.style.display = 'none';
-    elWatchContainer.appendChild( elMinuteSelect );
+    elWatch.appendChild( elMinuteSelect );
 
     var elButtons = document.createElement( 'div' );
     elButtons.className = 'MatTimePicker-Buttons';
