@@ -86,57 +86,37 @@
       input.addEventListener( 'click', onShowTimepickerClick );
     } );
 
-    var elTimepicker = document.createElement( 'div' );
-    elTimepicker.className = 'MatTimePicker-Clock';
-    elTimepicker.id = timePickerId;
-    var elPopup = document.createElement( 'div' );
-    elPopup.className = 'MatTimePicker-Popup';
+    var elTimepicker = createElement( 'div', 'MatTimePicker-Clock', timePickerId );
+    var elPopup = createElement( 'div', 'MatTimePicker-Popup' );
     elTimepicker.appendChild( elPopup );
-    var elHeader = document.createElement( 'div' );
-    elHeader.className = 'MatTimePicker-TimeHeader';
+    var elHeader = createElement( 'div', 'MatTimePicker-TimeHeader' );
     elPopup.appendChild( elHeader );
 
-    var elHour = document.createElement( 'span' );
-    elHour.id = timePickerHourId;
-    elHour.innerHTML = '00'
+    var elHour = createElement( 'span', null, timePickerHourId, '00' );
     elHour.addEventListener( 'click', onShowHourTimepickerClick );
     elHeader.appendChild( elHour );
-    var elColon = document.createElement( 'span' );
-    elColon.innerHTML = ':'
+    var elColon = createElement( 'span', null, null, ':' );
     elHeader.appendChild( elColon );
-    var elMinute = document.createElement( 'span' );
-    elMinute.id = timePickerMinuteId;
-    elMinute.innerHTML = '00';
+    var elMinute = createElement( 'span', null, timePickerMinuteId, '00' );
     elMinute.addEventListener( 'click', onShowMinuteTimepickerClick );
     elHeader.appendChild( elMinute );
-    var elWatchContainer = document.createElement( 'div' );
-    elWatchContainer.className = 'MatTimePicker-WatchContainer';
+    var elWatchContainer = createElement( 'div', 'MatTimePicker-WatchContainer' );
     elPopup.appendChild( elWatchContainer );
 
-    var elWatch = document.createElement( 'div' );
-    elWatch.className = 'MatTimePicker-Watch';
+    var elWatch = createElement( 'div', 'MatTimePicker-Watch' );
     elWatchContainer.appendChild( elWatch );
-    var elHourSelect = document.createElement( 'div' );
-    elHourSelect.className = 'MatTimePicker-WatchFace';
-    elHourSelect.id = timePickerHourSelectId;
+    var elHourSelect = createElement( 'div', 'MatTimePicker-WatchFace', timePickerHourSelectId );
     elWatch.appendChild( elHourSelect );
-    var elMinuteSelect = document.createElement( 'div' );
-    elMinuteSelect.className = 'MatTimePicker-WatchFace';
-    elMinuteSelect.id = timePickerMinuteSelectId;
+    var elMinuteSelect = createElement( 'div', 'MatTimePicker-WatchFace', timePickerMinuteSelectId );
     elMinuteSelect.style.display = 'none';
     elWatch.appendChild( elMinuteSelect );
 
-    var elButtons = document.createElement( 'div' );
-    elButtons.className = 'MatTimePicker-Buttons';
+    var elButtons = createElement( 'div', 'MatTimePicker-Buttons' );
     elWatchContainer.appendChild( elButtons );
-    var elButtonCancel = document.createElement( 'button' );
-    elButtonCancel.className = 'MatTimePicker-Button';
-    elButtonCancel.innerHTML = 'CANCEL';
+    var elButtonCancel = createElement( 'button', 'MatTimePicker-Button', null, 'CANCEL' );
     elButtonCancel.addEventListener( 'click', onCancelClick );
     elButtons.appendChild( elButtonCancel );
-    var elButtonOk = document.createElement( 'button' );
-    elButtonOk.className = 'MatTimePicker-Button';
-    elButtonOk.innerHTML = 'OK';
+    var elButtonOk = createElement( 'button', 'MatTimePicker-Button', null, 'OK' );
     elButtonOk.addEventListener( 'click', onOkClick );
     elButtons.appendChild( elButtonOk );
 
@@ -148,30 +128,23 @@
 
   function initWatchHours( elWatch ) {
     for( var h = 24; h > 0; h-- ) {
-      var hourContainer = document.createElement( 'div' );
+      var hourContainer = createElement( 'div', 'MatTimePicker-WatchHourContainer' + ( h > 12 ? ' MatTimePicker-WatchHourPM' : '' ) );
       var rotation = ( -90 + ( 360/12 * h ) );
       hourContainer.style.transform = 'rotate(' + rotation + 'deg)';
-      hourContainer.className = 'MatTimePicker-WatchHourContainer' + ( h > 12 ? ' MatTimePicker-WatchHourPM' : '' );
       hourContainer.setAttribute( 'hour', h % 24 );
       hourContainer.addEventListener( 'click', onSetHourClick );
       elWatch.appendChild( hourContainer );
 
-      var centerDot = document.createElement( 'div' );
-      centerDot.className = 'MatTimePicker-WatchCenterDot';
+      var centerDot = createElement( 'div', 'MatTimePicker-WatchCenterDot' );
       hourContainer.appendChild( centerDot );
-      var stick = document.createElement( 'div' );
-      stick.className = 'MatTimePicker-WatchStick';
+      var stick = createElement( 'div', 'MatTimePicker-WatchStick' );
       hourContainer.appendChild( stick );
 
-      var hour = document.createElement( 'div' );
-      hour.className = 'MatTimePicker-WatchHour';
+      var hour = createElement( 'div', 'MatTimePicker-WatchHour' );
       hourContainer.appendChild( hour );
-      var hourBg = document.createElement( 'div' );
-      hourBg.className = 'MatTimePicker-WatchHourBg';
+      var hourBg = createElement( 'div', 'MatTimePicker-WatchHourBg' );
       hour.appendChild( hourBg );
-      var hourValue = document.createElement( 'div' );
-      hourValue.className = 'MatTimePicker-WatchHourValue';
-      hourValue.innerHTML = h % 24;
+      var hourValue = createElement( 'div', 'MatTimePicker-WatchHourValue', null, h % 24 );
       hourValue.style.transform = 'rotate(' + ( rotation * -1 ) + 'deg)';
       hour.appendChild( hourValue );
     }
@@ -182,36 +155,37 @@
       for( var m = 0; m < 60; m++ ) {
         var minute = m % 60;
         if ( ( i == 0 && m % 5 !== 0 ) || ( i == 1 && m % 5 === 0 ) ) {
-          var minuteContainer = document.createElement( 'div' );
+          var minuteContainer = createElement( 'div', 'MatTimePicker-WatchMinuteContainer' );
           var rotation = ( -90 + ( 360/60 * m ) );
           minuteContainer.style.transform = 'rotate(' + rotation + 'deg)';
-          minuteContainer.className = 'MatTimePicker-WatchMinuteContainer';
           minuteContainer.setAttribute( 'minute', m );
           minuteContainer.addEventListener( 'click', onSetMinuteClick );
           elWatch.appendChild( minuteContainer );
 
-          var centerDot = document.createElement( 'div' );
-          centerDot.className = 'MatTimePicker-WatchCenterDot';
+          var centerDot = createElement( 'div', 'MatTimePicker-WatchCenterDot' );
           minuteContainer.appendChild( centerDot );
-          var stick = document.createElement( 'div' );
-          stick.className = 'MatTimePicker-WatchStick';
+          var stick = createElement( 'div', 'MatTimePicker-WatchStick' );
           minuteContainer.appendChild( stick );
 
-          var minute = document.createElement( 'div' );
-          minute.className = 'MatTimePicker-WatchMinute';
+          var minute = createElement( 'div', 'MatTimePicker-WatchMinute' );
           minuteContainer.appendChild( minute );
-          var minuteBg = document.createElement( 'div' );
-          minuteBg.className = 'MatTimePicker-WatchHourBg';
+          var minuteBg = createElement( 'div', 'MatTimePicker-WatchHourBg' );
           minute.appendChild( minuteBg );
           if ( m % 5 === 0 ) {
-            var minuteValue = document.createElement( 'div' );
-            minuteValue.className = 'MatTimePicker-WatchHourValue';
-            minuteValue.innerHTML = m;
+            var minuteValue = createElement( 'div', 'MatTimePicker-WatchHourValue', null, m );
             minuteValue.style.transform = 'rotate(' + ( rotation * -1 ) + 'deg)';
             minute.appendChild( minuteValue );
           }
         }
       }
     }
+  }
+
+  function createElement( type, className, id, innerHTML ) {
+    var el = document.createElement( type );
+    if ( className ) el.className = className;
+    if ( id ) el.id = id;
+    if ( typeof innerHTML !== 'undefined' ) el.innerHTML = innerHTML;
+    return el;
   }
 } )( );

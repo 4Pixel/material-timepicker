@@ -7,16 +7,52 @@
   <link rel="stylesheet" href="../css/material-timepicker.css">
   <script src="../js/material-timepicker.js"></script>
   <style>
+    /* OPTIONAL - remove this for your project and use any styling*/
     h1 {
       font-family: sans-serif;
     }
+
+    input.SomeRandomInputOfType-MatTimepicker {
+      font-family: sans-serif;
+      color: #333;
+      cursor: pointer;
+      padding: 3px;
+      line-height: 15px;
+      font-size: 15px;
+      width: 40px;
+      border: 1px solid #ddd;
+      border-radius: 1px;
+      transition-property: border-color, background-color;
+      transition-duration: 0.15s;
+    }
+
+    input.SomeRandomInputOfType-MatTimepicker:hover {
+      border-color: #999;
+      background-color: #fafafa;
+    }
+
+    /* CUSTOMIZE your timepicker theme color here or that the default blue theme */
+    /*
+    .MatTimePicker-Clock .MatTimePicker-Popup,
+    .MatTimePicker-Clock .MatTimePicker-WatchHourBg,
+    .MatTimePicker-Clock .MatTimePicker-WatchStick,
+    .MatTimePicker-Clock .MatTimePicker-WatchCenterDot,
+    .MatTimePicker-Clock .MatTimePicker-Button:hover
+    {
+      background-color: rebeccapurple;
+    }
+
+    .MatTimePicker-Clock .MatTimePicker-Button {
+      color: rebeccapurple;
+    }
+    */
   </style>
 </head>
 <body>
   <h1>Material Timepicker</h1>
 
-  <!-- this is a timepicker reference element -->
-  <input class="MatTimepickerInput" type="mat-timepicker" value="00:00" placeholder="00:00" maxlength="5">
-  <input class="MatTimepickerInput" type="mat-timepicker" value="12:34" placeholder="00:00" maxlength="5">
+  <!-- this is a timepicker reference element with the input type 'mat-timepicker'  -->
+  <input class="SomeRandomInputOfType-MatTimepicker" type="mat-timepicker" value="00:00" placeholder="00:00" maxlength="5">
+  <input class="SomeRandomInputOfType-MatTimepicker" type="mat-timepicker" value="12:34" placeholder="00:00" maxlength="5">
 </body>
 </html>
