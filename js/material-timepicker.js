@@ -11,12 +11,11 @@
   }
 
   var onSetHourClick = function( event ) {
-    setHour( event.currentTarget.getAttribute( 'hour' ), true );
+    setHour( parseInt( event.currentTarget.getAttribute( 'hour' ) ), true );
     switchTimepickerInput( false );
   }
 
   var setHour = function ( hour, isSelected ) {
-    hour = parseInt( hour );
     var timepicker = document.getElementById( timePickerId );
     var hourEl = document.getElementById( timePickerHourId );
     hourEl.innerHTML = ( hour < 10 ? '0' : '' ) + hour;
@@ -30,11 +29,10 @@
   }
 
   var onSetMinuteClick = function ( event ) {
-    setMinute( event.currentTarget.getAttribute( 'minute' ), true );
+    setMinute( parseInt( event.currentTarget.getAttribute( 'minute' ) ), true );
   }
 
   var setMinute = function ( minute, isSelected ) {
-    minute = parseInt( minute );
     var timepicker = document.getElementById( timePickerId );
     var minuteEl = document.getElementById( timePickerMinuteId );
     minuteEl.innerHTML = (  minute < 10 ? '0' : '' ) + minute;
@@ -55,14 +53,21 @@
   var onOkClick = function ( ) {
     document.getElementById( timePickerId ).style.display = 'none';
     var time = document.getElementById( timePickerHourId ).innerHTML + ':' + document.getElementById( timePickerMinuteId ).innerHTML
-    currentInput.setAttribute( 'value', time );
+    currentInput.value = time;
   }
 
   var onShowTimepickerClick = function( event ) {
     currentInput = event.currentTarget;
-    var time = currentInput.getAttribute( 'value' ).split( ':' );
-    setHour( time[ 0 ], time[ 0 ] !== '00' && time[ 1 ] !== '00' ); //TODO: think about initial state handling
-    setMinute( time[ 1 ] );
+    var hours = minutes = 0;
+    try {
+      var timeValue = currentInput.getAttribute( 'value' ).split( ':' );
+      hours = parseInt( timeValue[ 0 ] );
+      minutes = parseInt( timeValue[ 1 ] );
+    } catch ( e ) {
+      hours = minutes = 0;
+    }
+    setHour( hours );
+    setMinute( minutes );
     switchTimepickerInput( true );
     document.getElementById( timePickerId ).style.display = 'flex';
   }
