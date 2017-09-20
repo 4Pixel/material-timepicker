@@ -4,9 +4,13 @@
 The Material Timepicker is lightweight standalone HTML5/JS(ES5)/CSS3 timepicker which offers a similar UI as the native Android timepicker.
 
 ## How to use
-* include the __material-timepicker.css__ and the __material-timepicker.js__ into your project
-* add an <input> tag into your page
-* override the default theme color by overriding the following css classes or leaf the default blue theme
+* include the the following files to your project: __material-timepicker.css__, __material-timepicker.js__
+* now you can use the timepicker by adding `<input>` tags of type __mat-timepicker__ into your page
+```html
+<input type="mat-timepicker" maxlength="5">
+<input type="mat-timepicker" value="15:42" placeholder="00:00" maxlength="5">
+```
+* override the default theme color by overriding the following css classes or leave the default blue theme
 ```css
 .MatTimePicker-Clock .MatTimePicker-Popup,
 .MatTimePicker-Clock .MatTimePicker-WatchHourBg,
