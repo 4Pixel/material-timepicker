@@ -64,7 +64,8 @@
       hours = parseInt( timeValue[ 0 ] );
       minutes = parseInt( timeValue[ 1 ] );
     } catch ( e ) {
-      hours = minutes = 0;
+      hours = new Date().getHours();
+      minutes = new Date().getMinutes();
     }
     setHour( hours );
     setMinute( minutes );
