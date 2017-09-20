@@ -5,9 +5,9 @@ The Material Timepicker is lightweight standalone HTML5/JS(ES5)/CSS3 timepicker 
 
 ## How to use
 * include the __material-timepicker.css__ and the __material-timepicker.js__ into your project
-* add an '<input>' tag into your page
+* add an <input> tag into your page
 * override the default theme color by overriding the following css classes or leaf the default blue theme
-'''css
+```css
 .MatTimePicker-Clock .MatTimePicker-Popup,
 .MatTimePicker-Clock .MatTimePicker-WatchHourBg,
 .MatTimePicker-Clock .MatTimePicker-WatchStick,
@@ -20,7 +20,7 @@ The Material Timepicker is lightweight standalone HTML5/JS(ES5)/CSS3 timepicker 
 .MatTimePicker-Clock .MatTimePicker-Button {
     color: your-custom-button-text-color;
 }
-'''
+```
 
 ## Examples
 Here is a [sample](https://edgeelement.github.io/material-timepicker/demo/test.html) to see it in action.
