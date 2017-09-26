@@ -87,6 +87,8 @@ span.MatTimePicker-TimeHeader-Selected {
   justify-content: space-between;
   cursor: pointer;
   align-items: center;
+  user-select: none;
+  -moz-user-select: none;
 }
 
 .MatTimePicker-WatchHourContainer:hover .MatTimePicker-WatchHourBg,
@@ -95,10 +97,16 @@ span.MatTimePicker-TimeHeader-Selected {
   opacity: 0.5;
 }
 
+.hasTouch .MatTimePicker-WatchHourContainer:hover .MatTimePicker-WatchHourBg,
+.hasTouch .MatTimePicker-WatchHourContainer:hover .MatTimePicker-WatchStick,
+.hasTouch .MatTimePicker-WatchHourContainer:hover .MatTimePicker-WatchCenterDot {
+  opacity: 0;
+}
+
 .MatTimePicker-WatchHourContainer.MatTimePicker-HourSelected .MatTimePicker-WatchHourBg,
 .MatTimePicker-WatchHourContainer.MatTimePicker-HourSelected .MatTimePicker-WatchStick,
 .MatTimePicker-WatchHourContainer.MatTimePicker-HourSelected .MatTimePicker-WatchCenterDot {
-  opacity: 1;
+  opacity: 1 !important;
 }
 
 .MatTimePicker-HourSelected .MatTimePicker-WatchHourValue {
@@ -171,6 +179,8 @@ span.MatTimePicker-TimeHeader-Selected {
   cursor: pointer;
   align-items: center;
   height: 10px;
+  user-select: none;
+  -moz-user-select: none;
 }
 
 .MatTimePicker-WatchMinuteContainer:hover .MatTimePicker-WatchHourBg,
@@ -179,10 +189,16 @@ span.MatTimePicker-TimeHeader-Selected {
   opacity: 0.5;
 }
 
+.hasTouch .MatTimePicker-WatchMinuteContainer:hover .MatTimePicker-WatchHourBg,
+.hasTouch .MatTimePicker-WatchMinuteContainer:hover .MatTimePicker-WatchStick,
+.hasTouch .MatTimePicker-WatchMinuteContainer:hover .MatTimePicker-WatchCenterDot {
+  opacity: 0;
+}
+
 .MatTimePicker-WatchMinuteContainer.MatTimePicker-HourSelected .MatTimePicker-WatchHourBg,
 .MatTimePicker-WatchMinuteContainer.MatTimePicker-HourSelected .MatTimePicker-WatchStick,
 .MatTimePicker-WatchMinuteContainer.MatTimePicker-HourSelected .MatTimePicker-WatchCenterDot {
-  opacity: 1;
+  opacity: 1 !important;
 }
 
 .MatTimePicker-WatchMinute {
@@ -214,6 +230,7 @@ span.MatTimePicker-TimeHeader-Selected {
   cursor: pointer;
   border-radius: 1px;
   user-select: none;
+  -moz-user-select: none;
   outline: none;
 }
 
@@ -224,21 +241,6 @@ span.MatTimePicker-TimeHeader-Selected {
 .MatTimePicker-Button:hover {
   background-color: #469cd1;
   color: #fff;
-}
-
-@media only screen and (min-width: 480px) {
-
-}
-
-@media only screen and (min-width: 768px) {
-
-  .MatTimePicker-WatchContainer {
-
-  }
-
-  .MatTimePicker-Popup {
-
-  }
 }
 
 @media only screen and (orientation:landscape) {

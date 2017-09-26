@@ -5,9 +5,34 @@
   var timePickerHourSelectId = 'mat-timepicker-hour-select';
   var timePickerMinuteSelectId = 'mat-timepicker-minute-select';
   var currentInput = null;
+  var lastHoverdTime = null;
+  var isHourFaceVisible = true;
 
   window.onload = function (  ) {
     init( );
+  }
+
+  var onTimeTouchEnd = function( ) {
+    if ( lastHoverdTime ) {
+      switchTimepickerInput( false );
+    }
+    lastHoverdTime = null;
+  }
+
+  var onMinuteTouchMove = function( event ) {
+    var el = document.elementFromPoint( event.targetTouches[ 0 ].pageX, event.targetTouches[ 0 ].pageY );
+    if ( el.className === 'MatTimePicker-WatchMinuteContainer' ) {
+      lastHoverdTime = parseInt( el.getAttribute( 'minute' ) );
+      setMinute( lastHoverdTime, true );
+    }
+  }
+
+  var onHourTouchMove = function( event ) {
+    var el = document.elementFromPoint( event.targetTouches[ 0 ].pageX, event.targetTouches[ 0 ].pageY );
+    if ( el.className === 'MatTimePicker-WatchHourBg' ) {
+      lastHoverdTime = parseInt( el.getAttribute( 'hour-value' ) );
+      setHour( lastHoverdTime, true );
+    }
   }
 
   var onSetHourClick = function( event ) {
@@ -83,7 +108,9 @@
   }
 
   var switchTimepickerInput = function ( isHour ) {
+    isHourFaceVisible = isHour;
     document.getElementById( isHour ? timePickerHourId : timePickerMinuteId ).className = 'MatTimePicker-TimeHeader-Selected';
+    document.getElementById( isHour ? timePickerMinuteId : timePickerHourId ).className = '';
     document.getElementById( timePickerHourSelectId ).style.opacity = document.getElementById( timePickerHourSelectId ).style.zIndex = isHour ? 1 : 0;
     document.getElementById( timePickerMinuteSelectId ).style.opacity = document.getElementById( timePickerMinuteSelectId ).style.zIndex = isHour ? 0 : 1;
   }
@@ -94,7 +121,7 @@
     } );
 
     var elTimepicker = createElement( 'div', 'MatTimePicker-Clock', timePickerId );
-    var elPopup = createElement( 'div', 'MatTimePicker-Popup' );
+    var elPopup = createElement( 'div', 'MatTimePicker-Popup' + ( 'ontouchstart' in document.documentElement ? ' hasTouch' : '' ) );
     elTimepicker.appendChild( elPopup );
     var elHeader = createElement( 'div', 'MatTimePicker-TimeHeader' );
     elPopup.appendChild( elHeader );
@@ -113,9 +140,13 @@
     var elWatch = createElement( 'div', 'MatTimePicker-Watch' );
     elWatchContainer.appendChild( elWatch );
     var elHourSelect = createElement( 'div', 'MatTimePicker-WatchFace', timePickerHourSelectId );
+    elHourSelect.addEventListener( 'touchmove', onHourTouchMove );
+    elHourSelect.addEventListener( 'touchend', onTimeTouchEnd );
     elWatch.appendChild( elHourSelect );
     var elMinuteSelect = createElement( 'div', 'MatTimePicker-WatchFace', timePickerMinuteSelectId );
     elMinuteSelect.style.opacity = 0;
+    elMinuteSelect.addEventListener(  'touchmove', onMinuteTouchMove );
+    elMinuteSelect.addEventListener(  'touchend', onTimeTouchEnd );
     elWatch.appendChild( elMinuteSelect );
 
     var elButtons = createElement( 'div', 'MatTimePicker-Buttons' );
@@ -150,6 +181,7 @@
       var hour = createElement( 'div', 'MatTimePicker-WatchHour' );
       hourContainer.appendChild( hour );
       var hourBg = createElement( 'div', 'MatTimePicker-WatchHourBg' );
+      hourBg.setAttribute( 'hour-value', h % 24 );
       hour.appendChild( hourBg );
       var hourValue = createElement( 'div', 'MatTimePicker-WatchHourValue', null, h % 24 );
       hourValue.style.transform = 'rotate(' + ( rotation * -1 ) + 'deg)';
