@@ -84,8 +84,8 @@
 
   var switchTimepickerInput = function ( isHour ) {
     document.getElementById( isHour ? timePickerHourId : timePickerMinuteId ).className = 'MatTimePicker-TimeHeader-Selected';
-    document.getElementById( timePickerHourSelectId ).style.display = isHour ? 'flex' : 'none';
-    document.getElementById( timePickerMinuteSelectId ).style.display = isHour ? 'none' : 'flex';
+    document.getElementById( timePickerHourSelectId ).style.opacity = document.getElementById( timePickerHourSelectId ).style.zIndex = isHour ? 1 : 0;
+    document.getElementById( timePickerMinuteSelectId ).style.opacity = document.getElementById( timePickerMinuteSelectId ).style.zIndex = isHour ? 0 : 1;
   }
 
   var init = function( ) {
@@ -115,7 +115,7 @@
     var elHourSelect = createElement( 'div', 'MatTimePicker-WatchFace', timePickerHourSelectId );
     elWatch.appendChild( elHourSelect );
     var elMinuteSelect = createElement( 'div', 'MatTimePicker-WatchFace', timePickerMinuteSelectId );
-    elMinuteSelect.style.display = 'none';
+    elMinuteSelect.style.opacity = 0;
     elWatch.appendChild( elMinuteSelect );
 
     var elButtons = createElement( 'div', 'MatTimePicker-Buttons' );
