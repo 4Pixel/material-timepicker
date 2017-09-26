@@ -58,6 +58,7 @@
 
   var onShowTimepickerClick = function( event ) {
     currentInput = event.currentTarget;
+    currentInput.blur( );
     var hours = minutes = 0;
     try {
       var timeValue = currentInput.getAttribute( 'value' ).split( ':' );
