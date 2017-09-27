@@ -25,11 +25,12 @@ The Material Timepicker is lightweight standalone HTML5/JS(ES5)/CSS3 timepicker 
     color: your-custom-button-text-color;
 }
 ```
+
+## Examples
+Here is a [sample](https://edgeelement.github.io/material-timepicker/demo/test.html) to see it in action.
+
 ## Screenshots
 ![iPhone 4 - landscape- default](screenshots/iPhone4-landscape-default.png)
 ![iPhone 4 - portrait - default](screenshots/iPhone4-portrait-default.png)
 ![iPhone6 - landscape- red](screenshots/iPhone6-landscape-red.png)
 ![Nexus5X - portrait - red](screenshots/Nexus5X-portrait-red.png)
-
-## Examples
-Here is a [sample](https://edgeelement.github.io/material-timepicker/demo/test.html) to see it in action.
