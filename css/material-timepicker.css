@@ -68,7 +68,7 @@ span.MatTimePicker-TimeHeader-Selected {
   background-color: #e6e6e6;
   border-radius: 100%;
   transition-property: opacity;
-  transition-duration: 0.3s;
+  transition-duration: 0.7s;
   z-index: 0;
 }
 .MatTimePicker-WatchFace:first-child {
